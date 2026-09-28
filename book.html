@@ -53,9 +53,10 @@
       window.gtag?.("get", "G-YNKMRCBK82", "client_id", (client_id) => {
         window.gtag?.("get", "G-YNKMRCBK82", "session_id", (session_id) => {
           console.log(`cid`, client_id, "sid", session_id);
-          document
-            .querySelector("#reservationIframe40263")
-            ?.contentWindow?.postMessage(
+
+          const iframe = document.querySelector("#reservationIframe40263");
+          iframe?.addEventListener("load", () => {
+            iframe?.contentWindow?.postMessage(
               {
                 type: "cookie-preferences",
                 value: {
@@ -67,6 +68,7 @@
               },
               "https://test.varaa.timma.fi",
             );
+          });
         });
       });
     </script>
