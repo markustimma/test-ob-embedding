@@ -50,17 +50,19 @@
         cookie_flags: "SameSite=None;Secure",
       });
 
-      window.gtag?.("get", "G-YNKMRCBK82", "client_id", (clientId) => {
-        window.gtag?.("get", "G-YNKMRCBK82", "session_id", (sessionId) => {
-          console.log(`cid`, clientId, "sid", sessionId);
+      window.gtag?.("get", "G-YNKMRCBK82", "client_id", (client_id) => {
+        window.gtag?.("get", "G-YNKMRCBK82", "session_id", (session_id) => {
+          console.log(`cid`, client_id, "sid", session_id);
           document
             .querySelector("#reservationIframe40263")
             ?.contentWindow?.postMessage(
               {
                 type: "cookie-preferences",
-                ga4Session: {
-                  clientId,
-                  sessionId,
+                value: {
+                  GA4: {
+                    client_id,
+                    session_id,
+                  },
                 },
               },
               "https://test.varaa.timma.fi",
