@@ -49,6 +49,24 @@
       gtag("config", "G-YNKMRCBK82", {
         cookie_flags: "SameSite=None;Secure",
       });
+
+      window.gtag?.("get", "G-YNKMRCBK82", "client_id", (clientId) => {
+        window.gtag?.("get", "G-YNKMRCBK82", "session_id", (sessionId) => {
+          console.log(`cid`, clientId, "sid", sessionId);
+          document
+            .querySelector("#reservationIframe40263")
+            ?.contentWindow?.postMessage(
+              {
+                type: "cookie-preferences",
+                ga4Session: {
+                  clientId,
+                  sessionId,
+                },
+              },
+              "https://test.varaa.timma.fi",
+            );
+        });
+      });
     </script>
   </head>
   <body>
