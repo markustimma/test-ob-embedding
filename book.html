@@ -56,18 +56,20 @@
 
           const iframe = document.querySelector("#reservationIframe40263");
           iframe?.addEventListener("load", () => {
-            iframe?.contentWindow?.postMessage(
-              {
-                type: "cookie-preferences",
-                value: {
-                  GA4: {
-                    client_id,
-                    session_id,
+            setTimeout(() => {
+              iframe?.contentWindow?.postMessage(
+                {
+                  type: "cookie-preferences",
+                  value: {
+                    GA4: {
+                      client_id,
+                      session_id,
+                    },
                   },
                 },
-              },
-              "https://test.varaa.timma.fi",
-            );
+                "https://test.varaa.timma.fi",
+              );
+            }, 750);
           });
         });
       });
